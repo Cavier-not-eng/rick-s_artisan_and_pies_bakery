@@ -1,0 +1,21 @@
+<!-- Random Pie Generator -->
+
+<section class="random-pie">
+
+    <h2>🎲 Random Pie Generator</h2>
+
+    <p>
+        Can't decide which pie to try?
+        Let Rick choose one for you!
+    </p>
+
+    <div id="random-pie-result">
+        🥧
+        <h3>Click the button to choose a pie!</h3>
+    </div>
+
+    <button onclick="randomPie()" class="random-button">
+        🎲 Surprise Me!
+    </button>
+
+</section>
