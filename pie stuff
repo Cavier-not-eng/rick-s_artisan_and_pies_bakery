@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rick's Artisan Pies</title>
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff8ed;
+    color: #3b2416;
+    transition: 0.3s;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+header {
+    background: #5b2c1c;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffd27d;
+}
+
+.cart-button,
+.dark-button {
+    border: none;
+    border-radius: 8px;
+
+    padding: 10px 15px;
+
+    font-weight: bold;
+}
+
+.cart-button {
+    background: #e89b3d;
+    color: white;
+}
+
+.dark-button {
+    background: #222;
+    color: white;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(70,35,20,0.7),
+            rgba(70,35,20,0.7)
+        ),
+        linear-gradient(
+            135deg,
+            #d8893c,
+            #7c3f25
+        );
+
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin-bottom: 35px;
+}
+
+.main-button {
+    display: inline-block;
+
+    padding: 15px 30px;
+
+    background: #f2b45d;
+    color: #4a2617;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    border-radius: 30px;
+
+    transition: 0.3s;
+}
+
+.main-button:hover {
+    transform: scale(1.08);
+    background: white;
+}
+
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section {
+    padding: 80px 30px;
+}
+
+section h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.section-description {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+
+/* =========================
+   PIE MENU
+========================= */
+
+.pie-container {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 25px;
+}
+
+.pie-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.12);
+
+    transition: 0.3s;
+}
+
+.pie-card:hover {
+    transform: translateY(-8px);
+}
+
+.pie-image {
+    font-size: 75px;
+    margin-bottom: 15px;
+}
+
+.pie-card h3 {
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.pie-card p {
+    line-height: 1.6;
+    color: #684b3b;
+}
+
+.pie-card h4 {
+    color: #b55b22;
+    font-size: 22px;
+    margin: 18px;
+}
+
+.pie-card button {
+    border: none;
+
+    background: #5b2c1c;
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    margin: 4px;
+
+    font-weight: bold;
+}
+
+.pie-card button:hover {
+    background: #8a4427;
+}
+
+
+/* =========================
+   RANDOM PIE
+========================= */
+
+.random-pie {
+    background: #f1d4a8;
+    text-align: center;
+}
+
+#random-pie-result {
+    max-width: 550px;
+    margin: 30px auto;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.15);
+
+    font-size: 60px;
+}
+
+#random-pie-result h3 {
+    font-size: 28px;
+    margin: 15px;
+}
+
+#random-pie-result p {
+    font-size: 17px;
+    margin: 10px;
+}
+
+.random-button {
+    border: none;
+
+    background: #5b2c1c;
+    color: white;
+
+    padding: 15px 30px;
+
+    border-radius: 30px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.random-button:hover {
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   PIE OF THE WEEK
+========================= */
+
+.feature {
+    text-align: center;
+    background: #ffe0a8;
+}
+
+.feature h3 {
+    font-size: 30px;
+    margin: 20px;
+}
+
+.feature p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.feature strong {
+    font-size: 25px;
+    color: #b55b22;
+}
+
+
+/* =========================
+   DEALS
+========================= */
+
+.deals {
+    text-align: center;
+}
+
+.deal-container {
+    max-width: 1000px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 25px;
+}
+
+.deal {
+    background: white;
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.1);
+}
+
+.deal h3 {
+    margin-bottom: 15px;
+}
+
+.deal strong {
+    display: block;
+    margin-top: 15px;
+
+    font-size: 24px;
+    color: #b55b22;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    background: #f1d4a8;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 80px;
+}
+
+.about-text {
+    max-width: 650px;
+}
+
+.about-text h2 {
+    text-align: left;
+}
+
+.about-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+.about-icon {
+    font-size: 150px;
+}
+
+
+/* =========================
+   REVIEWS
+========================= */
+
+.reviews {
+    text-align: center;
+}
+
+.review-container {
+    max-width: 1000px;
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 25px;
+}
+
+.review {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.1);
+}
+
+.review h3 {
+    color: #e89b3d;
+    margin-bottom: 15px;
+}
+
+.review p {
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+
+/* =========================
+   OPENING HOURS
+========================= */
+
+.hours {
+    text-align: center;
+    background: #fff0d0;
+}
+
+.hours p {
+    margin: 12px;
+    font-size: 18px;
+}
+
+.open-status {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 12px 20px;
+
+    background: #39a852;
+    color: white;
+
+    border-radius: 25px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   FRESH FROM OVEN
+========================= */
+
+.fresh {
+    text-align: center;
+}
+
+.fresh p {
+    max-width: 650px;
+    margin: 20px auto;
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+.oven-status {
+    display: inline-block;
+
+    background: #e9f7e9;
+
+    padding: 15px 25px;
+
+    border-radius: 30px;
+
+    color: #247a35;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   PIE CHALLENGE
+========================= */
+
+.challenge {
+    background: #f1d4a8;
+    text-align: center;
+}
+
+.challenge p {
+    margin: 20px auto;
+    font-size: 18px;
+}
+
+.challenge button,
+.party button {
+    border: none;
+
+    padding: 14px 25px;
+
+    background: #5b2c1c;
+    color: white;
+
+    border-radius: 25px;
+
+    font-weight: bold;
+}
+
+#challenge-result {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   PARTY
+========================= */
+
+.party {
+    text-align: center;
+}
+
+.party p {
+    max-width: 650px;
+    margin: 20px auto;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    background: #fff0d0;
+    text-align: center;
+}
+
+.contact p {
+    margin: 12px;
+    font-size: 18px;
+}
+
+
+/* =========================
+   BASKET
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    z-index: 2000;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background: white;
+
+    width: 90%;
+    max-width: 550px;
+
+    margin: 80px auto;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    color: #3b2416;
+}
+
+.close {
+    float: right;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item button {
+    border: none;
+    background: none;
+}
+
+.checkout {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    background: #5b2c1c;
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #3a1d13;
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark-mode {
+    background: #181818;
+    color: #eeeeee;
+}
+
+.dark-mode .pie-card,
+.dark-mode .review,
+.dark-mode .deal,
+.dark-mode #random-pie-result,
+.dark-mode .modal-content {
+    background: #292929;
+    color: white;
+}
+
+.dark-mode .pie-card p {
+    color: #cccccc;
+}
+
+.dark-mode .feature,
+.dark-mode .random-pie,
+.dark-mode .about,
+.dark-mode .challenge,
+.dark-mode .hours,
+.dark-mode .contact {
+    background: #222222;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text h2 {
+        text-align: center;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+🥧 Rick's Artisan Pies
+</div>
+
+<ul>
+
+<li>
+<a href="#home">Home</a>
+</li>
+
+<li>
+<a href="#pies">Pies</a>
+</li>
+
+<li>
+<a href="#deals">Deals</a>
+</li>
+
+<li>
+<a href="#about">About</a>
+</li>
+
+<li>
+<a href="#contact">Contact</a>
+</li>
+
+<li>
+<button class="dark-button"
+onclick="toggleDarkMode()">
+🌙
+</button>
+</li>
+
+<li>
+<button class="cart-button"
+onclick="showCart()">
+🛒 Basket
+<span id="cart-count">0</span>
+</button>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home" class="hero">
+
+<div class="hero-content">
+
+<h1>
+Rick's Artisan Pies
+</h1>
+
+<p>
+Handmade pies. Fresh ingredients. Big flavour.
+</p>
+
+<a href="#pies" class="main-button">
+Explore Our Pies
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PIES
+========================= -->
+
+<section id="pies">
+
+<h2>🥧 Our Artisan Pies</h2>
+
+<p class="section-description">
+Freshly baked pies made with quality ingredients.
+</p>
+
+
+<div class="pie-container">
+
+
+<!-- Beef -->
+
+<div class="pie-card">
+
+<div class="pie-image">
+🥧
+</div>
+
+<h3>
+Classic Beef Pie
+</h3>
+
+<p>
+Tender beef cooked in rich homemade gravy.
+</p>
+
+<h4>
+$8.50
+</h4>
+
+<button onclick="addToCart('Classic Beef Pie',8.50)">
+🛒 Add
+</button>
+
+<button onclick="favouritePie(this)">
+🤍 Favourite
+</button>
+
+</div>
+
+
+<!-- Chicken -->
+
+<div class="pie-card">
+
+<div class="pie-image">
+🥧
+</div>
+
+<h3>
+Chicken & Mushroom
+</h3>
+
+<p>
+Creamy chicken and mushrooms in golden pastry.
+</p>
+
+<h4>
+$9.00
+</h4>
+
+<button onclick="addToCart('Chicken & Mushroom Pie',9)">
+🛒 Add
+</button>
+
+<button onclick="favouritePie(this)">
+🤍 Favourite
+</button>
+
+</div>
+
+
+<!-- Steak -->
+
+<div class="pie-card">
+
+<div class="pie-image">
+🥧
+</div>
+
+<h3>
+Steak & Pepper
+</h3>
+
+<p>
+Juicy steak with pepper and a rich sauce.
+</p>
+
+<h4>
+$10.00
+</h4>
+
+<button onclick="addToCart('Steak & Pepper Pie',10)">
+🛒 Add
+</button>
+
+<button onclick="favouritePie(this)">
+🤍 Favourite
+</button>
+
+</div>
+
+
+<!-- Apple -->
+
+<div class="pie-card">
+
+<div class="pie-image">
+🍎
+</div>
+
+<h3>
+Apple Crumble
+</h3>
+
+<p>
+Sweet apples with a crunchy crumble topping.
+</p>
+
+<h4>
+$7.50
+</h4>
+
+<button onclick="addToCart('Apple Crumble Pie',7.50)">
+🛒 Add
+</button>
+
+<button onclick="favouritePie(this)">
+🤍 Favourite
+</button>
+
+</div>
+
+
+<!-- Bacon -->
+
+<div class="pie-card">
+
+<div class="pie-image">
+🥓
+</div>
+
+<h3>
+Cheese & Bacon
+</h3>
+
+<p>
+Crispy pastry filled with cheese and bacon.
+</p>
+
+<h4>
+$9.50
+</h4>
+
+<button onclick="addToCart('Cheese & Bacon Pie',9.50)">
+🛒 Add
+</button>
+
+<button onclick="favouritePie(this)">
+🤍 Favourite
+</button>
+
+</div>
+
+
+<!-- Vegetable -->
+
+<div class="pie-card">
+
+<div class="pie-image">
+🥕
+</div>
+
+<h3>
+Vegetable Garden
+</h3>
+
+<p>
+Fresh vegetables and herbs inside golden pastry.
+</p>
+
+<h4>
+$8.00
+</h4>
+
+<button onclick="addToCart('Vegetable Garden Pie',8)">
+🛒 Add
+</button>
+
+<button onclick="favouritePie(this)">
+🤍 Favourite
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RANDOM PIE
+========================= -->
+
+<section class="random-pie">
+
+<h2>🎲 Random Pie Generator</h2>
+
+<p>
+Can't decide? Let Rick choose for you!
+</p>
+
+<div id="random-pie-result">
+
+🥧
+
+<h3>
+Click the button!
+</h3>
+
+</div>
+
+<button class="random-button"
+onclick="randomPie()">
+
+🎲 Surprise Me!
+
+</button>
+
+</section>
+
+
+<!-- =========================
+     PIE OF THE WEEK
+========================= -->
+
+<section class="feature">
+
+<h2>
+🏆 Pie of the Week
+</h2>
+
+<h3>
+Steak & Pepper Pie
+</h3>
+
+<p>
+Our rich steak and pepper pie is this week's favourite!
+</p>
+
+<strong>
+$10.00
+</strong>
+
+</section>
+
+
+<!-- =========================
+     DEALS
+========================= -->
+
+<section id="deals" class="deals">
+
+<h2>
+🎁 Today's Deals
+</h2>
+
+<div class="deal-container">
+
+<div class="deal">
+
+<h3>
+Family Pie Pack
+</h3>
+
+<p>
+4 pies + 4 drinks
+</p>
+
+<strong>
+$35.00
+</strong>
+
+</div>
+
+
+<div class="deal">
+
+<h3>
+Lunch Special
+</h3>
+
+<p>
+Any pie + drink
+</p>
+
+<strong>
+$12.00
+</strong>
+
+</div>
+
+
+<div class="deal">
+
+<h3>
+Sweet Deal
+</h3>
+
+<p>
+2 Apple Crumble Pies
+</p>
+
+<strong>
+$13.00
+</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about" class="about">
+
+<div class="about-text">
+
+<h2>
+🧑‍🍳 Meet Rick
+</h2>
+
+<p>
+Rick started making pies because he believed
+everyone deserves a delicious, freshly baked pie.
+</p>
+
+<p>
+Every pie at Rick's Artisan Pies is made with
+care, quality ingredients and plenty of passion.
+</p>
+
+</div>
+
+<div class="about-icon">
+🥧
+</div>
+
+</section>
+
+
+<!-- =========================
+     REVIEWS
+========================= -->
+
+<section class="reviews">
+
+<h2>
+⭐ Customer Reviews
+</h2>
+
+<div class="review-container">
+
+
+<div class="review">
+
+<h3>
+⭐⭐⭐⭐⭐
+</h3>
+
+<p>
+"Best pies I've ever had!"
+</p>
+
+<strong>
+- Jamie
+</strong>
+
+</div>
+
+
+<div class="review">
+
+<h3>
+⭐⭐⭐⭐⭐
+</h3>
+
+<p>
+"The pastry is absolutely amazing."
+</p>
+
+<strong>
+- Alex
+</strong>
+
+</div>
+
+
+<div class="review">
+
+<h3>
+⭐⭐⭐⭐⭐
+</h3>
+
+<p>
+"Rick's pies are now my favourite!"
+</p>
+
+<strong>
+- Sam
+</strong>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     OPENING HOURS
+========================= -->
+
+<section class="hours">
+
+<h2>
+🕐 Opening Hours
+</h2>
+
+<p>
+Monday - Friday: 7:00 AM - 5:00 PM
+</p>
+
+<p>
+Saturday: 8:00 AM - 4:00 PM
+</p>
+
+<p>
+Sunday: 8:00 AM - 2:00 PM
+</p>
+
+<div class="open-status">
+🟢 OPEN NOW
+</div>
+
+</section>
+
+
+<!-- =========================
+     FRESH FROM OVEN
+========================= -->
+
+<section class="fresh">
+
+<h2>
+🔥 Fresh From The Oven
+</h2>
+
+<p>
+Our pies are baked throughout the day so you
+can enjoy crispy pastry and delicious fillings.
+</p>
+
+<div class="oven-status">
+🟢 Pies currently baking!
+</div>
+
+</section>
+
+
+<!-- =========================
+     PIE CHALLENGE
+========================= -->
+
+<section class="challenge">
+
+<h2>
+🥧 Rick's Pie Challenge
+</h2>
+
+<p>
+Think you know your pies?
+Try today's mystery ingredient!
+</p>
+
+<button onclick="pieChallenge()">
+Start Challenge
+</button>
+
+<p id="challenge-result">
+</p>
+
+</section>
+
+
+<!-- =========================
+     PIE PARTY
+========================= -->
+
+<section class="party">
+
+<h2>
+🎉 Host a Pie Party!
+</h2>
+
+<p>
+Need pies for a birthday, party or event?
+Rick's Artisan Pies can prepare large orders
+for special occasions.
+</p>
+
+<button onclick="partyMessage()">
+Order For An Event
+</button>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact" class="contact">
+
+<h2>
+📍 Visit Rick's
+</h2>
+
+<p>
+Come and grab a freshly baked pie!
+</p>
+
+<p>
+📍 25 Baker Street, Brisbane
+</p>
+
+<p>
+📞 07 1234 5678
+</p>
+
+<p>
+✉️ hello@rickspies.com
+</p>
+
+</section>
+
+
+<!-- =========================
+     SHOPPING BASKET
+========================= -->
+
+<div id="cart-modal" class="modal">
+
+<div class="modal-content">
+
+<span class="close"
+onclick="closeCart()">
+&times;
+</span>
+
+<h2>
+🛒 Your Basket
+</h2>
+
+<div id="cart-items">
+Your basket is empty.
+</div>
+
+<h3>
+Total: $<span id="cart-total">0.00</span>
+</h3>
+
+<button class="checkout"
+onclick="checkout()">
+Checkout
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<p>
+© 2026 Rick's Artisan Pies
+</p>
+
+<p>
+🥧 Made with pastry, passion and JavaScript!
+</p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   SHOPPING CART
+========================= */
+
+let cart = [];
+
+
+function addToCart(name, price) {
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    updateCart();
+
+    alert(
+        name + " has been added to your basket! 🥧"
+    );
+}
+
+
+function updateCart() {
+
+    document.getElementById("cart-count")
+        .textContent = cart.length;
+
+    const cartItems =
+        document.getElementById("cart-items");
+
+    let total = 0;
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            "<p>Your basket is empty.</p>";
+
+    } else {
+
+        cartItems.innerHTML = "";
+
+        cart.forEach((item,index) => {
+
+            total += item.price;
+
+            const div =
+                document.createElement("div");
+
+            div.className = "cart-item";
+
+            div.innerHTML = `
+                <span>
+                    ${item.name}
+                </span>
+
+                <span>
+                    $${item.price.toFixed(2)}
+                </span>
+
+                <button
+                    onclick="removeFromCart(${index})">
+                    ❌
+                </button>
+            `;
+
+            cartItems.appendChild(div);
+
+        });
+
+    }
+
+    document.getElementById("cart-total")
+        .textContent = total.toFixed(2);
+}
+
+
+function removeFromCart(index) {
+
+    cart.splice(index,1);
+
+    updateCart();
+}
+
+
+function showCart() {
+
+    document.getElementById("cart-modal")
+        .style.display = "block";
+
+    updateCart();
+}
+
+
+function closeCart() {
+
+    document.getElementById("cart-modal")
+        .style.display = "none";
+}
+
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        alert(
+            "Your basket is empty! 🥧"
+        );
+
+        return;
+    }
+
+    alert(
+        "Thanks for ordering from Rick's Artisan Pies! 🥧"
+    );
+
+    cart = [];
+
+    updateCart();
+
+    closeCart();
+}
+
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("cart-modal");
+
+    if (event.target === modal) {
+
+        modal.style.display = "none";
+    }
+
+};
+
+
+/* =========================
+   RANDOM PIE
+========================= */
+
+function randomPie() {
+
+    const pies = [
+
+        {
+            name: "Classic Beef Pie",
+            description:
+            "Tender beef cooked in rich gravy.",
+            price: "$8.50",
+            emoji: "🥧"
+        },
+
+        {
+            name: "Chicken & Mushroom",
+            description:
+            "Creamy chicken and mushrooms.",
+            price: "$9.00",
+            emoji: "🍄"
+        },
+
+        {
+            name: "Steak & Pepper",
+            description:
+            "Juicy steak with pepper sauce.",
+            price: "$10.00",
+            emoji: "🥩"
+        },
+
+        {
+            name: "Apple Crumble",
+            description:
+            "Sweet apples with crunchy crumble.",
+            price: "$7.50",
+            emoji: "🍎"
+        },
+
+        {
+            name: "Cheese & Bacon",
+            description:
+            "Cheese and bacon in golden pastry.",
+            price: "$9.50",
+            emoji: "🥓"
+        },
+
+        {
+            name: "Vegetable Garden",
+            description:
+            "Fresh vegetables and herbs.",
+            price: "$8.00",
+            emoji: "🥕"
+        }
+
+    ];
+
+    const randomNumber =
+        Math.floor(
+            Math.random() * pies.length
+        );
+
+    const pie =
+        pies[randomNumber];
+
+    document.getElementById(
+        "random-pie-result"
+    ).innerHTML = `
+
+        <div>
+            ${pie.emoji}
+        </div>
+
+        <h3>
+            ${pie.name}
+        </h3>
+
+        <p>
+            ${pie.description}
+        </p>
+
+        <strong>
+            ${pie.price}
+        </strong>
+
+    `;
+}
+
+
+/* =========================
+   FAVOURITES
+========================= */
+
+function favouritePie(button) {
+
+    if (
+        button.textContent.includes("Favourite")
+    ) {
+
+        button.textContent =
+            "❤️ Favourited";
+
+    } else {
+
+        button.textContent =
+            "🤍 Favourite";
+    }
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+}
+
+
+/* =========================
+   PIE CHALLENGE
+========================= */
+
+function pieChallenge() {
+
+    const ingredients = [
+
+        "Beef 🥩",
+        "Chicken 🍗",
+        "Apple 🍎",
+        "Bacon 🥓",
+        "Mushrooms 🍄",
+        "Cheese 🧀",
+        "Vegetables 🥕"
+
+    ];
+
+    const random =
+        ingredients[
+            Math.floor(
+                Math.random() *
+                ingredients.length
+            )
+        ];
+
+    document.getElementById(
+        "challenge-result"
+    ).textContent =
+        "🤫 Today's mystery ingredient is: "
+        + random;
+
+}
+
+
+/* =========================
+   PARTY BUTTON
+========================= */
+
+function partyMessage() {
+
+    alert(
+        "🎉 Thanks for choosing Rick's Artisan Pies! " +
+        "We would love to help with your event."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
