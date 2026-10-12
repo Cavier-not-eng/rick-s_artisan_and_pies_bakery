@@ -1,0 +1,1170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rick's Artisan Pies | Freshly Baked Happiness</title>
+
+<style>
+:root {
+  --cream: #fff8ed;
+  --paper: #ffffff;
+  --red: #a93624;
+  --gold: #e5a642;
+  --brown: #42271c;
+  --text: #35251e;
+  --muted: #77665c;
+  --border: #ead9c8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background .25s, color .25s;
+}
+
+body.dark {
+  --cream: #191716;
+  --paper: #282320;
+  --red: #e77960;
+  --gold: #f0bd63;
+  --brown: #f8e9da;
+  --text: #f6eee7;
+  --muted: #c3b2a5;
+  --border: #49403a;
+}
+
+button, input, select, textarea { font: inherit; }
+
+button, .button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform .2s, opacity .2s;
+}
+
+button:hover, .button:hover { transform: translateY(-2px); }
+
+button:focus-visible, a:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+a { color: inherit; }
+
+img { max-width: 100%; }
+
+header {
+  background: var(--brown);
+  color: var(--cream);
+  padding: 15px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.logo span { color: var(--gold); }
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover { color: var(--gold); }
+
+.nav-button {
+  background: var(--gold);
+  color: #35251e;
+}
+
+.hero {
+  min-height: 450px;
+  padding: 70px 8%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 35px;
+  background: linear-gradient(130deg, var(--cream), var(--paper));
+}
+
+.eyebrow {
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: .8rem;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  line-height: 1.05;
+  margin: 15px 0;
+}
+
+.hero h1 span { color: var(--red); }
+
+.hero p { max-width: 550px; color: var(--muted); }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.primary {
+  background: var(--red);
+  color: white;
+}
+
+.secondary {
+  background: var(--gold);
+  color: #35251e;
+}
+
+.hero-art {
+  min-height: 290px;
+  border-radius: 25px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #edc98f, #b96336);
+  font-size: clamp(7rem, 16vw, 12rem);
+  box-shadow: 0 15px 40px #6b341b20;
+}
+
+.promo {
+  background: var(--red);
+  color: white;
+  text-align: center;
+  padding: 14px;
+  font-weight: bold;
+}
+
+.section {
+  padding: 65px 7%;
+  scroll-margin-top: 20px;
+}
+
+.section.alt { background: var(--paper); }
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-heading h2 {
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  margin-bottom: 8px;
+}
+
+.section-heading p { color: var(--muted); }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--text);
+}
+
+.toolbar input { flex: 1 1 240px; }
+
+.toolbar select { flex: 0 1 190px; }
+
+.pie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.pie-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #452b1710;
+  display: flex;
+  flex-direction: column;
+}
+
+.pie-picture {
+  min-height: 145px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(140deg, #f8e2bd, #e8b66c);
+  font-size: 5rem;
+}
+
+.pie-content { padding: 18px; }
+
+.pie-content h3 { margin-bottom: 5px; }
+
+.pie-content p {
+  color: var(--muted);
+  font-size: .94rem;
+  margin-bottom: 12px;
+}
+
+.pie-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.price {
+  color: var(--red);
+  font-weight: 900;
+  font-size: 1.25rem;
+}
+
+.pie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pie-actions button { flex: 1; }
+
+.small-button {
+  background: var(--gold);
+  color: #35251e;
+}
+
+.favourite {
+  background: #f4e2dd;
+  color: #8c2f22;
+}
+
+.empty-message {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  display: none;
+}
+
+.layout-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--paper);
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+}
+
+.panel h3 { margin-bottom: 15px; }
+
+.field { margin-bottom: 15px; }
+
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.result {
+  margin-top: 15px;
+  padding: 15px;
+  background: var(--cream);
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+}
+
+.wide-button { width: 100%; margin-top: 10px; }
+
+.basket-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.basket-item button {
+  background: #f4e2dd;
+  color: #8c2f22;
+  padding: 5px 9px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  text-align: center;
+}
+
+.stat {
+  padding: 22px 10px;
+  background: var(--cream);
+  border-radius: 12px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--red);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.feature {
+  padding: 25px;
+  border-radius: 14px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+}
+
+.feature .emoji { font-size: 2.5rem; }
+
+.feature h3 { margin: 10px 0; }
+
+.feature p { color: var(--muted); }
+
+.review {
+  padding: 22px;
+  background: var(--cream);
+  border-radius: 12px;
+}
+
+.stars { color: #d38b15; letter-spacing: 3px; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.gallery-item {
+  background: linear-gradient(140deg, #f7e0b8, #e9b66f);
+  min-height: 160px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 4rem;
+}
+
+.hours-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.notice {
+  margin-top: 15px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+footer {
+  padding: 35px 7%;
+  background: var(--brown);
+  color: var(--cream);
+  text-align: center;
+}
+
+footer p { margin: 8px 0; }
+
+footer a { color: var(--gold); }
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 320px;
+  background: var(--brown);
+  color: var(--cream);
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px #0002;
+  z-index: 10;
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-art { min-height: 220px; }
+  .pie-grid, .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  header { justify-content: center; }
+  nav { justify-content: center; }
+  .pie-grid, .feature-grid, .layout-two { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .section { padding: 45px 5%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#home" class="logo" style="text-decoration:none">🥧 Rick's <span>Artisan Pies</span></a>
+  <nav aria-label="Main navigation">
+    <a href="#menu">Menu</a>
+    <a href="#builder">Create a Pie</a>
+    <a href="#deals">Deals</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <button class="nav-button" onclick="scrollToSection('basket')">
+      Basket (<span id="basketCount">0</span>)
+    </button>
+    <button class="nav-button" onclick="toggleDarkMode()" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+
+<div class="promo">
+  🥧 Baked with care, served with a smile! Explore our demo bakery menu.
+</div>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">Fresh from Rick's kitchen</div>
+    <h1>A little bit of <span>pie</span> heaven.</h1>
+    <p>Discover comforting classics, delicious new flavours and golden pastry made for pie lovers.</p>
+    <div class="hero-actions">
+      <button class="primary" onclick="scrollToSection('menu')">Explore the Menu</button>
+      <button class="secondary" onclick="generateRandomPie()">Surprise Me!</button>
+    </div>
+  </div>
+  <div class="hero-art" role="img" aria-label="Illustration of a golden pie">🥧</div>
+</section>
+
+<section class="section">
+  <div class="stats">
+    <div class="stat"><strong>12+</strong>Pie varieties</div>
+    <div class="stat"><strong>100%</strong>Pie enthusiasm</div>
+    <div class="stat"><strong>1</strong>Very hungry baker</div>
+  </div>
+  <p class="notice" style="text-align:center">These are illustrative website statistics, not verified business claims.</p>
+</section>
+
+<section class="section alt" id="menu">
+  <div class="section-heading">
+    <div class="eyebrow">Find your favourite</div>
+    <h2>The Pie Menu</h2>
+    <p>From hearty savoury pies to sweet treats.</p>
+  </div>
+
+  <div class="toolbar">
+    <input id="pieSearch" type="search" placeholder="Search pies or ingredients..." aria-label="Search pies" oninput="renderMenu()">
+    <select id="categoryFilter" aria-label="Filter by category" onchange="renderMenu()">
+      <option value="all">All pies</option>
+      <option value="savoury">Savoury</option>
+      <option value="sweet">Sweet</option>
+      <option value="vegetarian">Vegetarian</option>
+    </select>
+    <select id="sortFilter" aria-label="Sort menu" onchange="renderMenu()">
+      <option value="featured">Featured first</option>
+      <option value="low">Price: low to high</option>
+      <option value="high">Price: high to low</option>
+      <option value="name">Name: A to Z</option>
+    </select>
+    <button class="secondary" onclick="showFavourites()">❤️ Favourites</button>
+    <button class="secondary" onclick="clearFilters()">Show All</button>
+  </div>
+
+  <div id="pieGrid" class="pie-grid"></div>
+  <p id="emptyMessage" class="empty-message">No pies found. Try another search.</p>
+</section>
+
+<section class="section" id="specials">
+  <div class="section-heading">
+    <div class="eyebrow">Something different</div>
+    <h2>Special Features</h2>
+    <p>Make your visit to Rick's a little more exciting.</p>
+  </div>
+  <div class="feature-grid">
+    <article class="feature">
+      <div class="emoji">🎲</div>
+      <h3>Random Pie Generator</h3>
+      <p>Can't decide? Let the pie picker choose for you.</p>
+      <button class="primary wide-button" onclick="generateRandomPie()">Pick My Pie</button>
+      <div class="result" id="randomResult" aria-live="polite">Your next favourite pie could be one click away.</div>
+    </article>
+    <article class="feature">
+      <div class="emoji">⭐</div>
+      <h3>Pie of the Week</h3>
+      <p>Meet our featured flavour: Steak & Pepper.</p>
+      <button class="secondary wide-button" onclick="addToBasket(3)">Add Featured Pie</button>
+    </article>
+    <article class="feature">
+      <div class="emoji">🎉</div>
+      <h3>Party Orders</h3>
+      <p>Planning a gathering? Build a basket for your event.</p>
+      <button class="primary wide-button" onclick="scrollToSection('party')">Plan a Party</button>
+    </article>
+  </div>
+</section>
+
+<section class="section alt" id="builder">
+  <div class="section-heading">
+    <div class="eyebrow">Your pie, your way</div>
+    <h2>Build Your Own Pie</h2>
+    <p>Choose a filling, pastry and extras to design a custom pie.</p>
+  </div>
+
+  <div class="layout-two">
+    <div class="panel">
+      <div class="field">
+        <label for="filling">Choose your filling</label>
+        <select id="filling" onchange="calculatePiePrice()">
+          <option value="5.5">Classic Beef — $5.50</option>
+          <option value="6.5">Chicken & Mushroom — $6.50</option>
+          <option value="7">Steak & Pepper — $7.00</option>
+          <option value="6">Vegetable Garden — $6.00</option>
+          <option value="5">Apple & Cinnamon — $5.00</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pastry">Choose your pastry</label>
+        <select id="pastry" onchange="calculatePiePrice()">
+          <option value="0">Classic flaky (+$0.00)</option>
+          <option value="0.5">Extra flaky (+$0.50)</option>
+          <option value="0.75">Wholemeal (+$0.75)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="extra">Choose an extra</label>
+        <select id="extra" onchange="calculatePiePrice()">
+          <option value="0">No extra (+$0.00)</option>
+          <option value="0.5">Cheese (+$0.50)</option>
+          <option value="0.75">Gravy (+$0.75)</option>
+          <option value="1">Extra filling (+$1.00)</option>
+        </select>
+      </div>
+      <div class="result">
+        Estimated custom pie price: <strong id="customPrice">$5.50</strong>
+      </div>
+      <button class="primary wide-button" onclick="addCustomPie()">Add Custom Pie to Basket</button>
+    </div>
+
+    <div class="panel">
+      <h3>💡 Rick's Pie Ideas</h3>
+      <p>Try combinations such as:</p>
+      <ul style="padding-left:20px; margin:15px 0">
+        <li>Steak, flaky pastry and extra gravy.</li>
+        <li>Chicken, mushroom and cheese.</li>
+        <li>Vegetable filling with wholemeal pastry.</li>
+        <li>Apple and cinnamon with a sweet pastry.</li>
+      </ul>
+      <div class="result">All prices are example prices for this website demo.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="basket">
+  <div class="section-heading">
+    <div class="eyebrow">Your delicious choices</div>
+    <h2>Your Shopping Basket</h2>
+    <p>Add pies from the menu and manage your order here.</p>
+  </div>
+
+  <div class="layout-two">
+    <div class="panel">
+      <h3>🛒 Basket Items</h3>
+      <div id="basketItems" aria-live="polite">Your basket is empty.</div>
+      <div class="total"><span>Total</span><span id="basketTotal">$0.00</span></div>
+      <button class="primary wide-button" onclick="checkout()">Continue to Demo Checkout</button>
+      <button class="secondary wide-button" onclick="clearBasket()">Empty Basket</button>
+      <p class="notice">This is a front-end demo. No payment is collected.</p>
+    </div>
+
+    <div class="panel">
+      <h3>🏅 Pie Lover Rewards</h3>
+      <p>Earn 10 demo points for every pie added to your basket.</p>
+      <div class="result"><strong id="loyaltyPoints">0</strong> loyalty points</div>
+      <p class="notice">Demo reward: redeem 100 points for a $2 discount on a basket of at least $2.</p>
+      <button class="secondary wide-button" onclick="redeemPoints()">Redeem 100 Points</button>
+      <p id="rewardMessage" class="notice" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="deals">
+  <div class="section-heading">
+    <div class="eyebrow">A little extra goodness</div>
+    <h2>Deals & Offers</h2>
+    <p>Example promotions you could customise for your bakery.</p>
+  </div>
+
+  <div class="feature-grid">
+    <article class="feature">
+      <div class="emoji">🥧</div>
+      <h3>Pie Pair</h3>
+      <p>Add any two Classic Beef Pies for a demo bundle price of $10.</p>
+      <button class="primary wide-button" onclick="addBundle()">Add Pie Pair — $10</button>
+    </article>
+    <article class="feature">
+      <div class="emoji">🎂</div>
+      <h3>Sweet Treat</h3>
+      <p>Try an Apple Crumble Pie after your savoury favourite.</p>
+      <button class="secondary wide-button" onclick="addToBasket(7)">Add Apple Pie</button>
+    </article>
+    <article class="feature">
+      <div class="emoji">💌</div>
+      <h3>Stay in the Loop</h3>
+      <p>Use the newsletter demo to see how a signup form works.</p>
+      <button class="primary wide-button" onclick="scrollToSection('newsletter')">Join Newsletter</button>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="section-heading">
+    <div class="eyebrow">A feast for the eyes</div>
+    <h2>Pie Gallery</h2>
+    <p>A little showcase of our imaginary bakery creations.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item" role="img" aria-label="Beef pie">🥧</div>
+    <div class="gallery-item" role="img" aria-label="Baking bread">🍞</div>
+    <div class="gallery-item" role="img" aria-label="Sweet pie">🥮</div>
+    <div class="gallery-item" role="img" aria-label="Bakery coffee">☕</div>
+    <div class="gallery-item" role="img" aria-label="Apples">🍎</div>
+    <div class="gallery-item" role="img" aria-label="Cheese">🧀</div>
+    <div class="gallery-item" role="img" aria-label="Vegetables">🥕</div>
+    <div class="gallery-item" role="img" aria-label="Party food">🎉</div>
+  </div>
+</section>
+
+<section class="section alt" id="reviews">
+  <div class="section-heading">
+    <div class="eyebrow">Kind words</div>
+    <h2>Customer Reviews</h2>
+    <p>Sample reviews for layout demonstration only.</p>
+  </div>
+  <div class="feature-grid">
+    <article class="review">
+      <div class="stars">★★★★★</div>
+      <p>“The perfect comfort food for a rainy day!”</p>
+      <strong>— Sample customer</strong>
+    </article>
+    <article class="review">
+      <div class="stars">★★★★★</div>
+      <p>“A golden crust and a lovely hearty filling.”</p>
+      <strong>— Sample customer</strong>
+    </article>
+    <article class="review">
+      <div class="stars">★★★★★</div>
+      <p>“The sweet pie ideas are a great finishing touch.”</p>
+      <strong>— Sample customer</strong>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="party">
+  <div class="section-heading">
+    <div class="eyebrow">Share the pie love</div>
+    <h2>Party Order Planner</h2>
+    <p>Work out how many pies you might need for your event.</p>
+  </div>
+  <div class="layout-two">
+    <div class="panel">
+      <div class="field">
+        <label for="guests">Number of guests</label>
+        <input id="guests" type="number" min="1" max="500" value="10">
+      </div>
+      <div class="field">
+        <label for="piesPerGuest">Pies per guest</label>
+        <select id="piesPerGuest">
+          <option value="1">1 pie per guest</option>
+          <option value="2">2 pies per guest</option>
+          <option value="0.5">Half a pie per guest</option>
+        </select>
+      </div>
+      <button class="primary wide-button" onclick="calculateParty()">Calculate Party Order</button>
+      <div class="result" id="partyResult" aria-live="polite">Enter your guest numbers to get started.</div>
+    </div>
+    <div class="panel">
+      <h3>Party planning tips</h3>
+      <ul style="padding-left:20px">
+        <li>Include vegetarian options.</li>
+        <li>Check allergies and dietary requirements.</li>
+        <li>Plan suitable storage and serving arrangements.</li>
+        <li>Confirm the actual order with the bakery if you connect this to a real business.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="tracker">
+  <div class="section-heading">
+    <div class="eyebrow">Keep track</div>
+    <h2>Demo Order Tracker</h2>
+    <p>Try the sample tracker interface.</p>
+  </div>
+  <div class="panel" style="max-width:600px;margin:auto">
+    <div class="field">
+      <label for="orderNumber">Order reference</label>
+      <input id="orderNumber" placeholder="e.g. PIE123">
+    </div>
+    <button class="primary wide-button" onclick="trackOrder()">Track Demo Order</button>
+    <div class="result" id="trackingResult" aria-live="polite">Enter a reference to see a sample status.</div>
+    <p class="notice">This does not look up real orders. A real tracker requires a connected ordering system.</p>
+  </div>
+</section>
+
+<section class="section" id="newsletter">
+  <div class="section-heading">
+    <div class="eyebrow">Fresh news, occasionally</div>
+    <h2>Join the Pie Club</h2>
+    <p>Try this newsletter signup form.</p>
+  </div>
+  <form class="panel" style="max-width:600px;margin:auto" onsubmit="subscribeNewsletter(event)">
+    <div class="field">
+      <label for="newsletterName">Your name</label>
+      <input id="newsletterName" maxlength="80" placeholder="Your name" required>
+    </div>
+    <div class="field">
+      <label for="newsletterEmail">Email address</label>
+      <input id="newsletterEmail" type="email" placeholder="you@example.com" required>
+    </div>
+    <button class="primary wide-button" type="submit">Sign Me Up</button>
+    <p id="newsletterMessage" class="notice" aria-live="polite"></p>
+    <p class="notice">Demo only: your details are not sent or stored.</p>
+  </form>
+</section>
+
+<section class="section alt" id="about">
+  <div class="section-heading">
+    <div class="eyebrow">Meet the baker</div>
+    <h2>About Rick's Artisan Pies</h2>
+  </div>
+  <div class="layout-two">
+    <div class="hero-art" style="min-height:220px;font-size:7rem" role="img" aria-label="Baker emoji">👨‍🍳</div>
+    <div>
+      <h3>Good pies, good company.</h3>
+      <p style="margin:15px 0;color:var(--muted)">
+        Rick's Artisan Pies is a fictional bakery concept built around comforting classics,
+        creative fillings and a friendly experience. This website is a place to explore flavours,
+        design a custom pie and practise online shopping features.
+      </p>
+      <p style="color:var(--muted)">
+        Add your real business story, photos, ingredients, prices and contact details here
+        if you use this project for an actual bakery.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-heading">
+    <div class="eyebrow">Say hello</div>
+    <h2>Contact & Opening Hours</h2>
+    <p>Example details to customise for your own project.</p>
+  </div>
+
+  <div class="layout-two">
+    <div class="panel">
+      <h3>Send a Demo Message</h3>
+      <form onsubmit="sendMessage(event)">
+        <div class="field">
+          <label for="contactName">Name</label>
+          <input id="contactName" required maxlength="80">
+        </div>
+        <div class="field">
+          <label for="contactEmail">Email</label>
+          <input id="contactEmail" type="email" required>
+        </div>
+        <div class="field">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" rows="4" required maxlength="1000"></textarea>
+        </div>
+        <button class="primary wide-button" type="submit">Send Demo Message</button>
+        <p id="contactResult" class="notice" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h3>Opening Hours</h3>
+      <div class="hours-list">
+        <div><span>Monday – Friday</span><strong>7 am – 4 pm</strong></div>
+        <div><span>Saturday</span><strong>8 am – 2 pm</strong></div>
+        <div><span>Sunday</span><strong>Closed</strong></div>
+      </div>
+      <p class="notice">Example hours only. These are not verified trading hours.</p>
+      <hr style="border:0;border-top:1px solid var(--border);margin:20px 0">
+      <h3>Useful Information</h3>
+      <p>📍 Add your bakery address here.</p>
+      <p>📞 Add your business phone number here.</p>
+      <p>✉️ Add your business email here.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="logo">🥧 Rick's <span>Artisan Pies</span></div>
+  <p>Freshly imagined. Deliciously designed.</p>
+  <p>
+    <a href="#home">Home</a> ·
+    <a href="#menu">Menu</a> ·
+    <a href="#builder">Create a Pie</a> ·
+    <a href="#contact">Contact</a>
+  </p>
+  <p>© <span id="year"></span> Rick's Artisan Pies — Student website demo.</p>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const pies = [
+  {id:1, name:"Classic Beef", price:5.50, category:"savoury", emoji:"🥧", description:"A hearty beef pie with a golden pastry crust.", featured:true},
+  {id:2, name:"Chicken & Mushroom", price:6.50, category:"savoury", emoji:"🍗", description:"Creamy chicken and mushroom in flaky pastry.", featured:true},
+  {id:3, name:"Steak & Pepper", price:7.00, category:"savoury", emoji:"🥩", description:"Rich steak filling with a peppery twist.", featured:true},
+  {id:4, name:"Cheese & Bacon", price:6.75, category:"savoury", emoji:"🧀", description:"A savoury combination of cheese and bacon.", featured:false},
+  {id:5, name:"Vegetable Garden", price:6.00, category:"vegetarian", emoji:"🥕", description:"A colourful vegetable-filled pie.", featured:false},
+  {id:6, name:"Spinach & Feta", price:6.25, category:"vegetarian", emoji:"🥬", description:"Spinach and feta in golden pastry.", featured:false},
+  {id:7, name:"Apple Crumble", price:5.00, category:"sweet", emoji:"🍎", description:"Sweet apple with a cinnamon crumble.", featured:true},
+  {id:8, name:"Chocolate Dream", price:5.75, category:"sweet", emoji:"🍫", description:"A chocolatey treat for dessert lovers.", featured:false},
+  {id:9, name:"Pumpkin & Sage", price:6.25, category:"vegetarian", emoji:"🎃", description:"Roasted pumpkin with fragrant sage.", featured:false},
+  {id:10, name:"Curried Chicken", price:6.75, category:"savoury", emoji:"🍛", description:"Chicken with a mild, warming curry flavour.", featured:false},
+  {id:11, name:"Lamb & Rosemary", price:7.25, category:"savoury", emoji:"🍖", description:"A classic lamb filling with rosemary.", featured:false},
+  {id:12, name:"Berry & Cream", price:5.50, category:"sweet", emoji:"🫐", description:"A sweet berry-inspired dessert pie.", featured:false}
+];
+
+let basket = [];
+let favourites = new Set();
+let loyaltyPoints = 0;
+let discount = 0;
+let onlyFavourites = false;
+let toastTimeout;
+
+const money = amount => "$" + amount.toFixed(2);
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[character]);
+}
+
+function renderMenu() {
+  const query = document.getElementById("pieSearch").value.toLowerCase().trim();
+  const category = document.getElementById("categoryFilter").value;
+  const sort = document.getElementById("sortFilter").value;
+
+  let filtered = pies.filter(pie => {
+    const matchesQuery = (pie.name + " " + pie.description + " " + pie.category)
+      .toLowerCase().includes(query);
+    const matchesCategory = category === "all" || pie.category === category;
+    const matchesFavourite = !onlyFavourites || favourites.has(pie.id);
+    return matchesQuery && matchesCategory && matchesFavourite;
+  });
+
+  if (sort === "low") filtered.sort((a,b) => a.price-b.price);
+  if (sort === "high") filtered.sort((a,b) => b.price-a.price);
+  if (sort === "name") filtered.sort((a,b) => a.name.localeCompare(b.name));
+  if (sort === "featured") filtered.sort((a,b) => Number(b.featured)-Number(a.featured));
+
+  document.getElementById("pieGrid").innerHTML = filtered.map(pie => `
+    <article class="pie-card">
+      <div class="pie-picture" role="img" aria-label="${escapeHTML(pie.name)}">${pie.emoji}</div>
+      <div class="pie-content">
+        <div class="pie-meta">
+          <h3>${escapeHTML(pie.name)}</h3>
+          <span class="price">${money(pie.price)}</span>
+        </div>
+        <p>${escapeHTML(pie.description)}</p>
+        <small>${escapeHTML(pie.category.charAt(0).toUpperCase()+pie.category.slice(1))}</small>
+        <div class="pie-actions">
+          <button class="primary" onclick="addToBasket(${pie.id})">Add to Basket</button>
+          <button class="favourite" aria-label="${favourites.has(pie.id) ? "Remove" : "Add"} ${escapeHTML(pie.name)} ${favourites.has(pie.id) ? "from" : "to"} favourites" aria-pressed="${favourites.has(pie.id)}" onclick="toggleFavourite(${pie.id})">
+            ${favourites.has(pie.id) ? "❤️ Saved" : "♡ Save"}
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  document.getElementById("emptyMessage").style.display = filtered.length ? "none" : "block";
+}
+
+function addToBasket(id) {
+  const pie = pies.find(item => item.id === id);
+  if (!pie) return;
+  basket.push({name:pie.name, price:pie.price});
+  loyaltyPoints += 10;
+  discount = Math.min(discount, basketSubtotal());
+  updateBasket();
+  updateRewards();
+  showToast(pie.name + " added to your basket!");
+}
+
+function addCustomPie() {
+  const filling = document.getElementById("filling");
+  const pastry = document.getElementById("pastry");
+  const extra = document.getElementById("extra");
+  const price = Number(filling.value) + Number(pastry.value) + Number(extra.value);
+  const name = "Custom " + filling.options[filling.selectedIndex].text.split(" — ")[0];
+  basket.push({name, price});
+  loyaltyPoints += 10;
+  updateBasket();
+  updateRewards();
+  showToast("Your custom pie has been added!");
+}
+
+function calculatePiePrice() {
+  const price = Number(document.getElementById("filling").value) +
+                Number(document.getElementById("pastry").value) +
+                Number(document.getElementById("extra").value);
+  document.getElementById("customPrice").textContent = money(price);
+}
+
+function basketSubtotal() {
+  return basket.reduce((sum, item) => sum + item.price, 0);
+}
+
+function basketTotal() {
+  return Math.max(0, basketSubtotal() - discount);
+}
+
+function updateBasket() {
+  const container = document.getElementById("basketItems");
+
+  if (!basket.length) {
+    container.innerHTML = "Your basket is empty.";
+  } else {
+    container.innerHTML = basket.map((item, index) => `
+      <div class="basket-item">
+        <div><strong>${escapeHTML(item.name)}</strong><br>${money(item.price)}</div>
+        <button onclick="removeFromBasket(${index})" aria-label="Remove ${escapeHTML(item.name)}">Remove</button>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("basketCount").textContent = basket.length;
+  document.getElementById("basketTotal").textContent = money(basketTotal());
+}
+
+function removeFromBasket(index) {
+  if (index < 0 || index >= basket.length) return;
+  basket.splice(index, 1);
+  discount = Math.min(discount, basketSubtotal());
+  updateBasket();
+  showToast("Item removed.");
+}
+
+function clearBasket() {
+  basket = [];
+  discount = 0;
+  updateBasket();
+  showToast("Basket emptied.");
+}
+
+function checkout() {
+  if (!basket.length) {
+    showToast("Add a pie before checking out.");
+    return;
+  }
+
+  alert(
+    "DEMO CHECKOUT\n\n" +
+    basket.map(item => item.name + " — " + money(item.price)).join("\n") +
+    "\n\nTotal: " + money(basketTotal()) +
+    "\n\nThis is a demonstration. No payment or real order was created."
+  );
+}
+
+function addBundle() {
+  basket.push({name:"Classic Beef Pie Pair", price:10});
+  loyaltyPoints += 20;
+  updateBasket();
+  updateRewards();
+  showToast("Pie Pair added to your basket!");
+}
+
+function updateRewards() {
+  document.getElementById("loyaltyPoints").textContent = loyaltyPoints;
+}
+
+function redeemPoints() {
+  const message = document.getElementById("rewardMessage");
+
+  if (loyaltyPoints < 100) {
+    message.textContent = "You need " + (100 - loyaltyPoints) + " more points to redeem this demo reward.";
+    return;
+  }
+  if (basketSubtotal() < 2) {
+    message.textContent = "Add at least $2 of items to your basket first.";
+    return;
+  }
+  if (discount >= 2) {
+    message.textContent = "The demo reward has already been applied.";
+    return;
+  }
+
+  loyaltyPoints -= 100;
+  discount += 2;
+  updateRewards();
+  updateBasket();
+  message.textContent = "Demo discount applied! Your total has been reduced by $2.";
+}
+
+function toggleFavourite(id) {
+  if (favourites.has(id)) {
+    favourites.delete(id);
+    showToast("Removed from favourites.");
+  } else {
+    favourites.add(id);
+    showToast("Added to favourites!");
+  }
+  renderMenu();
+}
+
+function showFavourites() {
+  onlyFavourites = !onlyFavourites;
+  renderMenu();
+  document.getElementById("menu").scrollIntoView({behavior:"smooth"});
+  showToast(onlyFavourites ? "Showing your saved pies." : "Showing all pies.");
+}
+
+function clearFilters() {
+  onlyFavourites = false;
+  document.getElementById("pieSearch").value = "";
+  document.getElementById("categoryFilter").value = "all";
+  document.getElementById("sortFilter").value = "featured";
+  renderMenu();
+}
+
+function generateRandomPie() {
+  const pie = pies[Math.floor(Math.random() * pies.length)];
+  document.getElementById("randomResult").innerHTML =
+    "<strong>" + escapeHTML(pie.name) + "</strong><br>" +
+    escapeHTML(pie.description) + "<br><strong>" + money(pie.price) + "</strong>" +
+    '<br><button class="primary wide-button" onclick="addToBasket(' + pie.id + ')">Add This Pie</button>';
+}
+
+function calculateParty() {
+  const guests = Number(document.getElementById("guests").value);
+  const perGuest = Number(document.getElementById("piesPerGuest").value);
+  const result = document.getElementById("partyResult");
+
+  if (!Number.isInteger(guests) || guests < 1 || guests > 500) {
+    result.textContent = "Please enter between 1 and 500 guests.";
+    return;
+  }
+
+  const count = Math.ceil(guests * perGuest);
+  result.textContent = "For " + guests + " guests, plan approximately " + count +
+    " pies. This is an estimate, so adjust it for appetites and other food.";
+}
+
+function trackOrder() {
+  const reference = document.getElementById("orderNumber").value.trim();
+  const result = document.getElementById("trackingResult");
+
+  if (!reference) {
+    result.textContent = "Please enter a demo order reference.";
+    return;
+  }
+
+  result.textContent = "Demo reference " + reference +
+    ": your imaginary order is being prepared! This is a sample status, not a real order lookup.";
+}
+
+function subscribeNewsletter(event) {
+  event.preventDefault();
+  const name = document.getElementById("newsletterName").value.trim();
+  const message = document.getElementById("newsletterMessage");
+
+  if (!name) {
+    message.textContent = "Please enter your name.";
+    return;
+  }
+
+  message.textContent = "Thanks, " + name + "! The demo signup worked, but no email was sent or saved.";
+  event.target.reset();
+}
+
+function sendMessage(event) {
+  event.preventDefault();
+  document.getElementById("contactResult").textContent =
+    "Your demo message has been checked, but it has not been sent anywhere.";
+  event.target.reset();
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.style.display = "block";
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.style.display = "none";
+  }, 2500);
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+renderMenu();
+calculatePiePrice();
+updateBasket();
+</script>
+</body>
+</html>
